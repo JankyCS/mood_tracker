@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'routeManager.dart';
+//import 'themes.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -10,7 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
+      theme: //Themes.LIGHT,
+      
+      ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

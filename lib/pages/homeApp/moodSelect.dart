@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../moodEntry.dart';
+import 'package:mood_tracker/database.dart';
+
 class MoodSelect extends StatefulWidget{
   
   MoodSelect();
@@ -10,7 +12,7 @@ class MoodSelect extends StatefulWidget{
 
 class _MoodSelectState extends State<MoodSelect> {
   double moodVal = 0;
-  List<bool> whyList = new List.filled(12, false, growable: false); //0 = family, 1= friends, 2=work, 3=hobbies, 4=school,5=relationships,6=sleep,7=travelling,8=food,9=health,10music,11=relaxing
+  List<int> whyList = new List.filled(12, 0, growable: false); //0 = family, 1= friends, 2=work, 3=hobbies, 4=school,5=relationships,6=sleep,7=travelling,8=food,9=health,10music,11=relaxing
   Widget build(BuildContext context)
   {
     return SimpleDialog(
@@ -83,7 +85,23 @@ class _MoodSelectState extends State<MoodSelect> {
           ),
           RaisedButton(
             onPressed: (){
-              addMood(moodVal,whyList,1);
+              print(whyList);
+              var m = MoodEntry(moodVal, whyList, DateTime.now());
+              DBProvider.db.newMood(m);
+              
+
+              //addMood(moodVal,whyList,1);
+              Navigator.pop(context);
+              },
+          ),
+          RaisedButton(
+            onPressed: (){
+              //print(whyList);
+             //var m = MoodEntry(moodVal, whyList, DateTime.now());
+              DBProvider.db.deleteTable();
+              
+
+              //addMood(moodVal,whyList,1);
               Navigator.pop(context);
               },
           ),
@@ -99,12 +117,12 @@ class _MoodSelectState extends State<MoodSelect> {
     return GestureDetector(
         onTap: (){
           setState((){
-            whyList[whyIndex]=!whyList[whyIndex];
+            whyList[whyIndex] = whyList[whyIndex] == 0 ? 1 : 0;
           });
         },
         child: Container(
           decoration: BoxDecoration(
-          color: !whyList[whyIndex]? Colors.transparent: Colors.grey,
+          color: whyList[whyIndex]==0 ? Colors.transparent: Colors.grey,
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           width:75.0,
@@ -119,10 +137,10 @@ class _MoodSelectState extends State<MoodSelect> {
               Icon(
                 icon,
                 size:45,
-                color:!whyList[whyIndex]? Colors.black: Colors.white,),
+                color:whyList[whyIndex]==0? Colors.black: Colors.white,),
               Text(
                 name,
-                style: TextStyle(color: !whyList[whyIndex]? Colors.black: Colors.white,)
+                style: TextStyle(color: whyList[whyIndex]==0? Colors.black: Colors.white,)
               )
             ]
           )
