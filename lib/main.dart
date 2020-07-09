@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'routeManager.dart';
-//import 'themes.dart';
+import 'themes.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: //Themes.LIGHT,
+      theme: Themes.LIGHT,
       
-      ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      // ThemeData(
+      //   primarySwatch: Colors.blue,
+      //   visualDensity: VisualDensity.adaptivePlatformDensity,
+      // ),
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
     );
