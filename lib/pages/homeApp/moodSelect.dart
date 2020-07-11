@@ -21,7 +21,8 @@ class _MoodSelectState extends State<MoodSelect> {
         //contentPadding: EdgeInsets.all(85.0),
         title:Text("How are you feeling?"),
         children: <Widget>[
-          Column(children:[
+          Column(
+            children:[
             Text('The number is'+moodVal.toString()),
             Slider(
               min:-5.0,

@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   getMoods() async {
-    print("peepo");
+    //print("peepo");
     final _moodsData = await DBProvider.db.getMood();
     return _moodsData;
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mood_tracker/database.dart';
 import 'package:intl/intl.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
-
+import 'package:mood_tracker/historyCard.dart';
 
 class HistoryPage extends StatefulWidget{
   
@@ -26,7 +26,7 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   getMoods() async {
-    print("peepo");
+    //print("peepo");
     final _moodsData = await DBProvider.db.getMood();
     return _moodsData;
   }
@@ -34,8 +34,8 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Center( 
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
+          //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             
             FutureBuilder(
@@ -49,115 +49,24 @@ class _HistoryPageState extends State<HistoryPage> {
                   case ConnectionState.done:
                     //moodsFuture = getMoods();
                     moodList = moodsData.data;
-                    print("got here");
+                   // print("got here");
                     //print(moodList[0].toString());
-                    if(moodList != null)
+                    if(moodList!=null)//moodList != null
                     {
                       return Column(
                       children: <Widget>[
-                        Text(
-                          moodList.toString()
+                        // Text(
+                        //   moodList.toString()
+                        // ),
+                        Column(
+                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 0.0),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              //top: BorderSide(width: 16.0, color: Colors.lightBlue.shade50),
-                              bottom: BorderSide(width: 1.0, color: Color(0xffEFEFEF)),
-                            ),
-                          ),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0),
-                            ),
-                            elevation: 0,
-                            child: InkWell(
-                              onTap: (){
-                                print("Tapped");
-                              },
-                              child: Padding(
-                              padding: EdgeInsets.fromLTRB(10,15,10,15),
-                              child: 
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      
-                                      children: <Widget>[
-                                        Image(
-                                          height:50,
-                                            image: NetworkImage("https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Emoji_with_Eyes_Opened_large.png?v=1571606036"),
-                                        ),
-                                        SizedBox(
-                                          width:20,
-                                          
-                                        ),
-                                        //Spacer(),
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Text(
-                                              "JULY 10, 2020",
-                                              //DateFormat('MMMM d, yyyy').format(DateTime.parse(moodList[0]['date'])).toUpperCase()+":",
-                                              style:
-                                                TextStyle(
-                                                  fontWeight: FontWeight.w300,
-                                                  color: Colors.black,
-                                                  fontSize: 24,
-                                                ),
-                                                textAlign: TextAlign.start,
-                                            ),
-                                            Text(
-                                              //"pog",
-                                              "FELT GREAT!",
-                                              style:
-                                                TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.black,
-                                                  fontSize: 24,
-                                                ),
-                                                textAlign: TextAlign.start,
-                                            ),
-                                          ],
-                                        ),
-                                        Spacer(),
-                                       
-                                        //SizedBox(width:20),
-                                        Icon(
-                                          Icons.chevron_right,
-                                          color: Color.fromRGBO(155, 155, 155, 1)
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(10,0,10,0),
-                                      child: Divider(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Here's Why:",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                      )
+                        //HistoryCard(),
+                        //HistoryCard()
                       ],
                     ); 
                     }
-                    
                 }
-
                 return Column(
                   children: <Widget>[
                     Text("nog")
@@ -165,12 +74,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 );
               },
             ),
-
-
-            Text('History'),
-            //////////
-            
-            //////////
+            //Text('History'),
           ],
         ),
       );

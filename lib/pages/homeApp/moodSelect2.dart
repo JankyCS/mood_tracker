@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import '../../moodEntry.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 
@@ -90,7 +91,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 //     //child: Text("Test")
                 //   ),
                 // ),
-                backgroundColor: Color.fromRGBO(232, 140, 255, 1),
+                backgroundColor: Colors.purple,
                 leading: IconButton(
                     icon: Icon(Icons.chevron_left),
                     color: Colors.white,
@@ -140,7 +141,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                           'https://i.pinimg.com/originals/89/aa/5f/89aa5ff9f3a38edc40beb96c8aa45a08.jpg',
                           height:2,
                           fit: BoxFit.cover,
-                          color:Color(0x8F000000),
+                          color:Colors.purpleAccent[100],
                           colorBlendMode: BlendMode.multiply,
                         ),
                         
@@ -164,7 +165,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 Text(
                   'How are you feeling?',
                   style:TextStyle(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black,
                     fontSize: 24,
                   ),
@@ -192,7 +193,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                     Text("Pretty Swell")
                   ],
                 ),
-                if(moodVal>-1 && moodVal<1) Column(
+                if(moodVal>=-1 && moodVal<1) Column(
                   children: <Widget>[
                     Image.network(
                       "https://cdn.shopify.com/s/files/1/1061/1924/products/Slightly_Smiling_Face_Emoji_87fdae9b-b2af-4619-a37f-e484c5e2e7a4_large.png?v=1571606036",
@@ -202,20 +203,20 @@ class _MoodSelect2State extends State<MoodSelect2> {
                     Text("Completely Fine")
                   ],
                 ),
-                if(moodVal>-3 && moodVal<=-1) Column(
+                if(moodVal>=-3 && moodVal<-1) Column(
                   children: <Widget>[
                     Image.network(
-                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Confused_Face_Emoji_large.png?v=1571606037",
+                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Neutral_Face_Emoji_large.png?v=1571606037",
                       height: 75
                     ),
                     SizedBox(height:10),
                     Text("Somewhat Bad")
                   ],
                 ),
-                if(moodVal<=-3) Column(
+                if(moodVal<-3) Column(
                   children: <Widget>[
                     Image.network(
-                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Very_sad_emoji_icon_png_large.png?v=1571606089",
+                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Confused_Face_Emoji_large.png?v=1571606037",
                       height: 75
                     ),
                     SizedBox(height:10),
@@ -237,7 +238,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 onChanged: (value) {
                   setState(() {
                     moodVal = value;
-                    print('changed, now moodVal is '+moodVal.toString());
+                    //print('changed, now moodVal is '+moodVal.toString());
                   });
                 },
               ),
@@ -247,9 +248,9 @@ class _MoodSelect2State extends State<MoodSelect2> {
               ),
               SizedBox(height:15),
               Text(
-                  'Why do you feel this way?',
+                  'why do you feel this way?',
                   style:TextStyle(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black,
                     fontSize: 24,
                   ),
@@ -266,18 +267,18 @@ class _MoodSelect2State extends State<MoodSelect2> {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   children: <Widget>[
-                    reasonSelect(context, "FAMILY", Icons.home,0),
-                    reasonSelect(context, "FRIENDS", Icons.people,1),
-                    reasonSelect(context, "WORK", Icons.home,2),
-                    reasonSelect(context, "HOBBIES", Icons.people,3),
-                    reasonSelect(context, "FAMILY", Icons.home,4),
-                    reasonSelect(context, "FRIENDS", Icons.people,5),
-                    reasonSelect(context, "WORK", Icons.home,6),
-                    reasonSelect(context, "HOBBIES", Icons.people,7),
-                    reasonSelect(context, "FAMILY", Icons.home,8),
-                    reasonSelect(context, "FRIENDS", Icons.people,9),
-                    reasonSelect(context, "WORK", Icons.home,10),
-                    reasonSelect(context, "HOBBIES", Icons.people,11),
+                    reasonSelect(context, "family", OMIcons.home,0),
+                    reasonSelect(context, "friends", OMIcons.peopleOutline,1),
+                    reasonSelect(context, "work", Icons.business,2),
+                    reasonSelect(context, "hobbies", Icons.gesture,3),
+                    reasonSelect(context, "school", OMIcons.school,4),
+                    reasonSelect(context, "love", Icons.favorite_border,5),
+                    reasonSelect(context, "health", Icons.healing,6),
+                    reasonSelect(context, "music", OMIcons.headset,7),
+                    reasonSelect(context, "food", OMIcons.kitchen,8),
+                    reasonSelect(context, "news", OMIcons.announcement,9),
+                    reasonSelect(context, "weather", OMIcons.wbSunny,10),
+                    reasonSelect(context, "money", OMIcons.localAtm,11),
                   ],
               ),
               
@@ -303,16 +304,16 @@ class _MoodSelect2State extends State<MoodSelect2> {
                       child: Text("That's It!"),
                     ),
                   ),
-                // RaisedButton(
-                //   onPressed: (){
-                //     //print(whyList);
-                //   //var m = MoodEntry(moodVal, whyList, DateTime.now());
-                //     DBProvider.db.deleteTable();
+                RaisedButton(
+                  onPressed: (){
+                    //print(whyList);
+                  //var m = MoodEntry(moodVal, whyList, DateTime.now());
+                    DBProvider.db.deleteTable();
                   
-                //     Navigator.pop(context);
-                //     },
-                //   child: Text("Delete the whoooole table"),
-                // ),
+                    Navigator.pop(context);
+                    },
+                  child: Text("Delete the whoooole table"),
+                ),
                 ])
               ),
             )
