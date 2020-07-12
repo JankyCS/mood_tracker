@@ -4,6 +4,8 @@ import '../../moodEntry.dart';
 import 'package:mood_tracker/database.dart';
 import 'package:intl/intl.dart';
 import 'package:mood_tracker/pages/history.dart';
+import 'package:mood_tracker/pages/analytics.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -48,24 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton( 
                 onPressed: () => 
                 Navigator.pushNamed(context, '/ms2')
-                // showDialog(
-                // context: context,
-                // builder: (context){
-                //     return MoodSelect();
-                // },
-                // )
               )
           ],
         ),
       ),
-      Center( 
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Analytics'),
-          ],
-        ),
-      ),
+      AnalyticsPage(),
       HistoryPage(),
       
       Center( 

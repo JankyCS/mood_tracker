@@ -154,7 +154,7 @@ class HistoryCard extends StatelessWidget
                         Text(
                           //"pog",
                           ///"FELT GREAT!",
-                          "Mood: "+phrase,
+                          ""+phrase,
                           style:
                             TextStyle(
                               fontWeight: FontWeight.w600,
