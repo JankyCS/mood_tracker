@@ -6,6 +6,11 @@ class MoodPerReason {
     this.color = new charts.Color(r: color.red, g: color.green, b: color.blue, a: color.alpha);
 
   final String reason;
-  final double moodSum;
+  double moodSum;
   final charts.Color color;
+
+  void add(double d)
+  {
+    this.moodSum += d;
+  }
 }

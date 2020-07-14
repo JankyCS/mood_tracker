@@ -104,7 +104,7 @@ class HistoryCard extends StatelessWidget
         // ),
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0),
+            borderRadius: BorderRadius.circular(10),
           ),
           elevation: 5,
           child: Padding(

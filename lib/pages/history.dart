@@ -61,6 +61,21 @@ class _HistoryPageState extends State<HistoryPage> {
                         Column(
                           children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
                         ),
+                        Column(
+                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
+                        ),
+                        Column(
+                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
+                        ),
+                        Column(
+                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
+                        ),
+                        Column(
+                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
+                        ),
+                        Column(
+                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
+                        ),
                         //HistoryCard(),
                         //HistoryCard()
                       ],
