@@ -36,8 +36,8 @@ class _MoodSelect2State extends State<MoodSelect2> {
           color: whyList[whyIndex]==0 ? Colors.transparent: Colors.purple[300],
             //borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
-          width:75.0,
-          height:75.0,
+         // width:75.0,
+          //height:75.0,
           margin: EdgeInsets.all(3.0),
           //padding: const EdgeInsets.all(8.0),
           child:
@@ -47,7 +47,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
             children: [
               Icon(
                 icon,
-                size:45,
+                size:(MediaQuery.of(context).size.width-60)/5-30,
                 color:whyList[whyIndex]==0? Colors.black: Colors.white,),
               Text(
                 name,
@@ -294,7 +294,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                       color: Colors.purple[500],
                       onPressed: (){
                         print(whyList);
-                        var m = MoodEntry(moodVal, whyList, DateTime.now());
+                        var m = MoodEntry(moodVal, whyList, DateTime.now().add(Duration(days:6)));
                         DBProvider.db.newMood(m);
                         
 

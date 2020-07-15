@@ -39,7 +39,7 @@ class _HistoryPageState extends State<HistoryPage> {
           children: <Widget>[
             
             FutureBuilder(
-              future:getMoods(),  //Note, chaneg to moodsFuture later, after implementing refresh when new mood added
+              future:moodsFuture,  //Note, chaneg to moodsFuture later, after implementing refresh when new mood added
               builder: (context, moodsData) {
 
                 switch (moodsData.connectionState) {
@@ -61,21 +61,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         Column(
                           children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
                         ),
-                        Column(
-                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
-                        ),
-                        Column(
-                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
-                        ),
-                        Column(
-                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
-                        ),
-                        Column(
-                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
-                        ),
-                        Column(
-                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
-                        ),
+                        
                         //HistoryCard(),
                         //HistoryCard()
                       ],
