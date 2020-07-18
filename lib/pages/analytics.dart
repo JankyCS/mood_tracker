@@ -42,6 +42,10 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   getData() async {
     final _moodList = await getMoods();
     //var _moodList = await mo.data;
+    if(_moodList==123)
+    {
+      return 123;
+    }
     List<String> reasonNames=[
       "Family",
       "Friends",
@@ -624,7 +628,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           case ConnectionState.waiting:
           case ConnectionState.active:
           case ConnectionState.done:
-            if(moodsData.data!=null)
+            if(moodsData.data!=null && moodsData.data!=123)
             {
               var dataGood;
               var dataBad;
@@ -703,8 +707,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
               padding: const EdgeInsets.all(0),
               child: ListView(
                 children: <Widget>[
-                  Text(_currentIndex.toString()),
-                  SizedBox(height:10),
+                  //Text(_currentIndex.toString()),
+                  SizedBox(height:20),
                   CupertinoSegmentedControl(
                     borderColor: Colors.purple[700],
                     pressedColor: Colors.white,
@@ -958,7 +962,6 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                             ],
                           ),
                         )
-                        
                       ],
                     ),
                   ),
@@ -967,9 +970,20 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             );
 
             }
+            if(moodsData.data==null)
+            {
+              return Container();
+            }
+            return Text(
+                "You haven't made any entries yet!",
+                style: TextStyle(
+                  color:Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
+                )
+              );
 
             
-          return Text("pog");
           }
         }
       ),

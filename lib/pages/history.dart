@@ -34,49 +34,90 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Center( 
-        child: ListView(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            
-            FutureBuilder(
-              future:moodsFuture,  //Note, chaneg to moodsFuture later, after implementing refresh when new mood added
-              builder: (context, moodsData) {
+        child: FutureBuilder(
+          future:moodsFuture,  //Note, chaneg to moodsFuture later, after implementing refresh when new mood added
+          builder: (context, moodsData) {
 
-                switch (moodsData.connectionState) {
-                  case ConnectionState.none:
-                  case ConnectionState.waiting:
-                  case ConnectionState.active:
-                  case ConnectionState.done:
-                    //moodsFuture = getMoods();
-                    moodList = moodsData.data;
-                   // print("got here");
-                    //print(moodList[0].toString());
-                    if(moodList!=null)//moodList != null
-                    {
-                      return Column(
-                      children: <Widget>[
-                        // Text(
-                        //   moodList.toString()
-                        // ),
-                        Column(
-                          children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
-                        ),
-                        
-                        //HistoryCard(),
-                        //HistoryCard()
-                      ],
-                    ); 
-                    }
+            switch (moodsData.connectionState) {
+              case ConnectionState.none:
+              case ConnectionState.waiting:
+              case ConnectionState.active:
+              case ConnectionState.done:
+                //moodsFuture = getMoods();
+                if(moodsData.data is List)
+                {
+                  moodList = moodsData.data;
+                }
+                
+               // print("got here");
+                //print(moodList[0].toString());
+                if(moodList.length!=0)//moodList != null
+                {
+                  return ListView(
+                  children: <Widget>[
+                    // Text(
+                    //   moodList.toString()
+                    // ),
+                    SizedBox(height:20),
+                    Column(
+                      children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
+                    ),
+                    
+                    //HistoryCard(),
+                    //HistoryCard()
+                  ],
+                ); 
+                }
+                if(moodsData.data==123)
+                {
+                  return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "You haven't made any entries yet!",
+                      style: TextStyle(
+                        color:Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                  );
                 }
                 return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("nog")
+                    // Text(
+                    //   "Loading...",
+                    //   // style: TextStyle(
+                    //   //   color:Colors.black,
+                    //   //   fontSize: 20,
+                    //   //   fontWeight: FontWeight.bold
+                    //   // ),
+                    //   textAlign: TextAlign.center,
+                    // ),
+                
+
                   ],
                 );
-              },
-            ),
-            //Text('History'),
-          ],
+            }
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                // Text(
+                //   "Loading...",
+                //   // style: TextStyle(
+                //   //   color:Colors.black,
+                //   //   fontSize: 20,
+                //   //   fontWeight: FontWeight.bold
+                //   // ),
+                //   textAlign: TextAlign.center,
+                // ),
+                // CircularProgressIndicator(backgroundColor: Colors.purple)
+              ],
+            );
+          },
         ),
       );
   }

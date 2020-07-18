@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:mood_tracker/database.dart';
 import 'package:intl/intl.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
-import '../../moodEntry.dart';
+//import '../../moodEntry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 
-class MoodSelect2 extends StatefulWidget{
-  final Function refresh;
-  MoodSelect2({@required this.refresh});
+class IconSheet extends StatefulWidget{
+  //final Function refresh;
+  IconSheet();
   @override
-  _MoodSelect2State createState() => _MoodSelect2State();
+  _IconSheetState createState() => _IconSheetState();
 
 }
 
-class _MoodSelect2State extends State<MoodSelect2> {
+class _IconSheetState extends State<IconSheet> {
   
-  List<int> whyList = new List.filled(12, 0, growable: false); //0 = family, 1= friends, 2=work, 3=hobbies, 4=school,5=relationships,6=sleep,7=travelling,8=food,9=health,10music,11=relaxing
+  //List<int> whyList = new List.filled(12, 0, growable: false); //0 = family, 1= friends, 2=work, 3=hobbies, 4=school,5=relationships,6=sleep,7=travelling,8=food,9=health,10music,11=relaxing
   double moodVal = 0;
 
 
@@ -28,12 +28,12 @@ class _MoodSelect2State extends State<MoodSelect2> {
       splashColor: Colors.purple,
         onTap: (){
           setState((){
-            whyList[whyIndex] = whyList[whyIndex] == 0 ? 1 : 0;
+            //whyList[whyIndex] = whyList[whyIndex] == 0 ? 1 : 0;
           });
         },
         child: Container(
           decoration: BoxDecoration(
-          color: whyList[whyIndex]==0 ? Colors.transparent: Colors.purple[300],
+          color: true ? Colors.transparent: Colors.purple[300],
             //borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
          // width:75.0,
@@ -48,10 +48,10 @@ class _MoodSelect2State extends State<MoodSelect2> {
               Icon(
                 icon,
                 size:(MediaQuery.of(context).size.width-60)/5-30,
-                color:whyList[whyIndex]==0? Colors.black: Colors.white,),
+                color:true? Colors.black: Colors.white,),
               Text(
                 name,
-                style: TextStyle(color: whyList[whyIndex]==0 ? Colors.black: Colors.white,)
+                style: TextStyle(color: true ? Colors.black: Colors.white,)
               )
             ]
           )
@@ -163,7 +163,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
 
 
                 Text(
-                  'How are you feeling?',
+                  'Icon Cheat Sheet',
                   style:TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
@@ -171,92 +171,9 @@ class _MoodSelect2State extends State<MoodSelect2> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height:10),
+                //SizedBox(height:10),
                 //Text(moodVal.toString()),
                 
-                if(moodVal>=3) Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/emotion4.png',
-                      height:75
-                    ),
-                    SizedBox(height:10),
-                    Text("Super Great")
-                  ],
-                ),
-                if(moodVal>=1 && moodVal<3) Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/emotion3.png',
-                      height:75
-                    ),
-                    SizedBox(height:10),
-                    Text("Pretty Swell")
-                  ],
-                ),
-                if(moodVal>=-1 && moodVal<1) Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/emotion2.png',
-                      height:75
-                    ),
-                    SizedBox(height:10),
-                    Text("Completely Fine")
-                  ],
-                ),
-                if(moodVal>=-3 && moodVal<-1) Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/emotion1.png',
-                      height:75
-                    ),
-                    SizedBox(height:10),
-                    Text("Somewhat Bad")
-                  ],
-                ),
-                if(moodVal<-3) Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/emotion0.png',
-                      height:75
-                    ),
-                    SizedBox(height:10),
-                    Text("Totally Terrible")
-                  ],
-                ),
-
-
-
-
-                //if(moodVal=)
-
-              Slider(
-                activeColor: Colors.purple,
-                min:-5.0,
-                max:5.0,
-                value:moodVal,
-                //divisions:10,
-                onChanged: (value) {
-                  setState(() {
-                    moodVal = value;
-                    //print('changed, now moodVal is '+moodVal.toString());
-                  });
-                },
-              ),
-              
-              Divider(
-                color: Colors.black,
-              ),
-              SizedBox(height:15),
-              Text(
-                  'Why do you feel this way?',
-                  style:TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontSize: 24,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
               ]
               )
               ),
@@ -284,45 +201,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
               ),
               
             ),
-            SliverPadding(
-              padding: EdgeInsets.fromLTRB(30,0,30,30),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  Container(
-                    alignment: Alignment.center,
-                    width:200,
-                    child: FlatButton(
-                      color: Colors.purple[500],
-                      onPressed: (){
-                        print(whyList);
-                        var m = MoodEntry(moodVal, whyList, DateTime.now().add(Duration(days:0)));
-                        DBProvider.db.newMood(m);
-                        
-                        widget.refresh();
-                        //addMood(moodVal,whyList,1);
-                        Navigator.pop(context,(){
-                          
-                        });
-                      },
-                      child: Text("That's It!"),
-                    ),
-                  ),
-                // RaisedButton(
-                //   onPressed: (){
-                //     //print(whyList);
-                //   //var m = MoodEntry(moodVal, whyList, DateTime.now());
-                //     DBProvider.db.deleteTable();
-                //      widget.refresh();
-                //     Navigator.pop(context,(){
-                //       setState(() {});
-                     
-                //     });
-                //     },
-                //   child: Text("Delete the whoooole table"),
-                // ),
-                ])
-              ),
-            )
+            
             
           ],
         ),

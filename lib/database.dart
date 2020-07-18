@@ -59,7 +59,7 @@ class DBProvider {
 
     var res = await db.query("moods");
     if(res.length==0){
-      return null;
+      return 123;
     }
     else{
       var resMap = res;
