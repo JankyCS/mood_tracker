@@ -175,9 +175,9 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 
                 if(moodVal>=3) Column(
                   children: <Widget>[
-                    Image.network(
-                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Emoji_with_Smiling_Eyes_large.png?v=1571606035",
-                      height: 75
+                    Image.asset(
+                      'assets/images/emotion4.png',
+                      height:75
                     ),
                     SizedBox(height:10),
                     Text("Super Great")
@@ -185,9 +185,9 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 ),
                 if(moodVal>=1 && moodVal<3) Column(
                   children: <Widget>[
-                    Image.network(
-                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Emoji_with_Eyes_Opened_large.png?v=1571606036",
-                      height: 75
+                    Image.asset(
+                      'assets/images/emotion3.png',
+                      height:75
                     ),
                     SizedBox(height:10),
                     Text("Pretty Swell")
@@ -195,9 +195,9 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 ),
                 if(moodVal>=-1 && moodVal<1) Column(
                   children: <Widget>[
-                    Image.network(
-                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Slightly_Smiling_Face_Emoji_87fdae9b-b2af-4619-a37f-e484c5e2e7a4_large.png?v=1571606036",
-                      height: 75
+                    Image.asset(
+                      'assets/images/emotion2.png',
+                      height:75
                     ),
                     SizedBox(height:10),
                     Text("Completely Fine")
@@ -205,9 +205,9 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 ),
                 if(moodVal>=-3 && moodVal<-1) Column(
                   children: <Widget>[
-                    Image.network(
-                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Neutral_Face_Emoji_large.png?v=1571606037",
-                      height: 75
+                    Image.asset(
+                      'assets/images/emotion1.png',
+                      height:75
                     ),
                     SizedBox(height:10),
                     Text("Somewhat Bad")
@@ -215,9 +215,9 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 ),
                 if(moodVal<-3) Column(
                   children: <Widget>[
-                    Image.network(
-                      "https://cdn.shopify.com/s/files/1/1061/1924/products/Confused_Face_Emoji_large.png?v=1571606037",
-                      height: 75
+                    Image.asset(
+                      'assets/images/emotion0.png',
+                      height:75
                     ),
                     SizedBox(height:10),
                     Text("Totally Terrible")
@@ -294,7 +294,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                       color: Colors.purple[500],
                       onPressed: (){
                         print(whyList);
-                        var m = MoodEntry(moodVal, whyList, DateTime.now().add(Duration(days:6)));
+                        var m = MoodEntry(moodVal, whyList, DateTime.now().add(Duration(days:340)));
                         DBProvider.db.newMood(m);
                         
 

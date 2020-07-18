@@ -246,7 +246,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         color:Colors.purple[300]
       ),
     ];
-    
+
     List<MoodPerReason> dataBadAlltime = [
       MoodPerReason(
         reason:'Family',
@@ -633,6 +633,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
               String unhappiest="";
               String often="";
               int scale;
+              String words="";
               if(_currentIndex==0)
               {
                 dataGood=moodsData.data['dataGoodWeek'];
@@ -642,6 +643,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                 often=moodsData.data['oftenWeek'];
                 scale=moodsData.data['scaleWeek'];
                 dataTime=moodsData.data['timeDataWeek'];
+                words="This week";
               }
               else if(_currentIndex==1)
               {
@@ -652,6 +654,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                 often=moodsData.data['oftenMonth'];
                 scale=moodsData.data['scaleMonth'];
                 dataTime=moodsData.data['timeDataMonth'];
+                words="This month";
               }
               else
               {
@@ -662,6 +665,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                 often=moodsData.data['oftenAll'];
                 scale=moodsData.data['scaleAll'];
                 dataTime=moodsData.data['timeDataAll'];
+                words="Overall";
               }
 
 
@@ -830,7 +834,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                         fontSize: 18,
                                       ),
                                       children: <TextSpan>[
-                                        new TextSpan(text: 'This week, the thing that made you happiest was: '),
+                                        new TextSpan(text: '$words, the thing that made you happiest was: '),
                                         new TextSpan(text: happiest, style: new TextStyle(fontWeight: FontWeight.bold)),
                                       ],
                                     ),
@@ -855,7 +859,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                         fontSize: 18,
                                       ),
                                       children: <TextSpan>[
-                                        new TextSpan(text: 'This week, the thing that made you unhappiest was: '),
+                                        new TextSpan(text: '$words, the thing that made you unhappiest was: '),
                                         new TextSpan(text: unhappiest, style: new TextStyle(fontWeight: FontWeight.bold)),
                                       ],
                                     ),
@@ -880,7 +884,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                         fontSize: 18,
                                       ),
                                       children: <TextSpan>[
-                                        new TextSpan(text: 'This week, the thing that most frequently affected your mood was: '),
+                                        new TextSpan(text: '$words, the thing that most frequently affected your mood was: '),
                                         new TextSpan(text: often, style: new TextStyle(fontWeight: FontWeight.bold)),
                                       ],
                                     ),
@@ -913,7 +917,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                 child: charts.TimeSeriesChart(
                                   series1,
                                   animate: true,
-                                  defaultRenderer: new charts.LineRendererConfig(includePoints: true),
+                                  defaultRenderer: new charts.LineRendererConfig(includePoints: _currentIndex != 2),
                                   // Optionally pass in a [DateTimeFactory] used by the chart. The factory
                                   // should create the same type of [DateTime] as the data provided. If none
                                   // specified, the default creates local date time.
@@ -943,9 +947,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                       hour: new charts.TimeFormatterSpec(
                                         format: 'MMMM dd', transitionFormat: 'MMMM dd'),
                                       month: new charts.TimeFormatterSpec(
-                                        format: 'MMMM dd', transitionFormat: 'MMMM dd, yyyy'),
+                                        format: 'MMMM', transitionFormat: 'MMMM, yyyy'),
                                       year: new charts.TimeFormatterSpec(
-                                        format: 'MMMM dd, yyyy', transitionFormat: 'MMMM dd, yyyy')
+                                        format: 'MMMM, yyyy', transitionFormat: 'MMMM, yyyy')
                                     )
                                   )
                                   //domainAxis: new charts.EndPointsTimeAxisSpec(),

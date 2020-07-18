@@ -73,23 +73,23 @@ class HistoryCard extends StatelessWidget
 
 
     if(moodVal>=3) {
-      img = "https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Emoji_with_Smiling_Eyes_large.png?v=1571606035";
+      img = "assets/images/emotion4.png";
       phrase = "Super Great";
     }
     else if (moodVal>=1){
-      img = "https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Emoji_with_Eyes_Opened_large.png?v=1571606036";
+      img = "assets/images/emotion3.png";
       phrase = "Pretty Swell";
     }
     else if (moodVal>=-1){
-      img =  "https://cdn.shopify.com/s/files/1/1061/1924/products/Slightly_Smiling_Face_Emoji_87fdae9b-b2af-4619-a37f-e484c5e2e7a4_large.png?v=1571606036";
+      img =  "assets/images/emotion2.png";
       phrase = "Completely Fine";
     }
     else if (moodVal >=-3){
-      img = "https://cdn.shopify.com/s/files/1/1061/1924/products/Neutral_Face_Emoji_large.png?v=1571606037";
+      img = "assets/images/emotion1.png";
       phrase = "Somewhat Bad";
     }
     else{
-      img = "https://cdn.shopify.com/s/files/1/1061/1924/products/Confused_Face_Emoji_large.png?v=1571606037";
+      img = "assets/images/emotion0.png";
       phrase = "Totally Terrible";
     }
 
@@ -119,7 +119,7 @@ class HistoryCard extends StatelessWidget
                     //
                   Column(
                     children: <Widget>[
-                      Image.network(
+                      Image.asset(
                         img,
                         height: 50
                       ),

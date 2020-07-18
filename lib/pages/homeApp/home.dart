@@ -5,6 +5,7 @@ import 'package:mood_tracker/database.dart';
 import 'package:intl/intl.dart';
 import 'package:mood_tracker/pages/history.dart';
 import 'package:mood_tracker/pages/analytics.dart';
+import 'package:mood_tracker/database.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
