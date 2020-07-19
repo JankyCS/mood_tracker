@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/database.dart';
-import 'package:intl/intl.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
-import 'package:mood_tracker/historyCard.dart';
 
 class SettingsPage extends StatefulWidget{
   //final Function refresh;
   SettingsPage();
   @override
   _SettingsPageState createState() => _SettingsPageState();
-
 }
 
 class _SettingsPageState extends State<SettingsPage> {
@@ -18,12 +14,6 @@ class _SettingsPageState extends State<SettingsPage> {
   {
     return Container(
       margin: const EdgeInsets.fromLTRB(5,0,5,10),
-      // decoration: BoxDecoration(
-      //   border: Border(
-      //     //top: BorderSide(width: 16.0, color: Colors.lightBlue.shade50),
-      //     bottom: BorderSide(width: 1.0, color: Color(0xffEFEFEF)),
-      //   ),
-      // ),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(1),
@@ -48,7 +38,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 Icon(
                 Icons.chevron_right,
                 size:20,
-                //color:Colors.black
                 ),
               ],
             )
@@ -62,7 +51,6 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        //mainAxisAlignment: ,
         children: <Widget>[
           SizedBox(height:30),
           settingCard((){Navigator.pushNamed(context, '/cheatSheet');}, "Icon Cheat Sheet"),
@@ -70,7 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
             (){
               showDialog<void>(
                 context: context,
-                barrierDismissible: true, // user must tap button!
+                barrierDismissible: true, 
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text('Stay Tuned!'),
@@ -78,7 +66,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: ListBody(
                         children: <Widget>[
                           Text('This feature will be implemented in a future update!'),
-                          //Text('Stay Tuned :)'),
                         ],
                       ),
                     ),
@@ -92,7 +79,7 @@ class _SettingsPageState extends State<SettingsPage> {
             (){
               showDialog<void>(
                 context: context,
-                barrierDismissible: true, // user must tap button!
+                barrierDismissible: true, 
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text('Delete All Data?'),
@@ -100,7 +87,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: ListBody(
                         children: <Widget>[
                           Text('Warning, this action cannot be undone. Are you really sure you want to delete all your data?'),
-                          //Text('Stay Tuned :)'),
                         ],
                       ),
                     ),
@@ -133,7 +119,7 @@ class _SettingsPageState extends State<SettingsPage> {
             (){
               showDialog<void>(
                 context: context,
-                barrierDismissible: true, // user must tap button!
+                barrierDismissible: true, 
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text('Theme: System'),
@@ -141,7 +127,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: ListBody(
                         children: <Widget>[
                           Text('This app automatically uses your system preferences to determine\nlight/dark mode.'),
-                          //Text('Stay Tuned :)'),
                         ],
                       ),
                     ),
@@ -151,9 +136,6 @@ class _SettingsPageState extends State<SettingsPage> {
             },
             "Theme: System"
           ),
-          
-
-          
         ],
       );
   }

@@ -1,9 +1,7 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/database.dart';
-import 'package:intl/intl.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
-import 'package:mood_tracker/historyCard.dart';
 import 'package:mood_tracker/chart/moodPerReason.dart';
 import 'package:mood_tracker/chart/moodOverTime.dart';
 import 'package:mood_tracker/chart/graph.dart';
@@ -27,15 +25,12 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
    moodsFuture = getData();
   }
 
   getMoods() async {
-    //print("peepo");
     final _moodsData = await DBProvider.db.getMood();
-    //print(_moodsData);
     return _moodsData;
   }
   
@@ -593,7 +588,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   Widget reasonTile(BuildContext context,IconData icon){
     return Container(
       decoration: BoxDecoration(
-      color: true ? Color.fromRGBO(255, 255, 255, 0.0): Theme.of(context).accentColor,
+      color:Color.fromRGBO(255, 255, 255, 0.0),
       border: Border.all(width: 2.0, color: Theme.of(context).accentColor),
         borderRadius: BorderRadius.all(Radius.circular(5)),
       ),
@@ -609,7 +604,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           Icon(
             icon,
             size:25,
-            color:false? Colors.black: Theme.of(context).accentColor,
+            color: Theme.of(context).accentColor,
           ),
          
         ]
@@ -1011,6 +1006,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
 
             
           }
+          return Container();
         }
       ),
     );

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'moodSelect.dart';
-import '../../moodEntry.dart';
 import 'package:mood_tracker/database.dart';
-import 'package:intl/intl.dart';
 import 'package:mood_tracker/pages/history.dart';
 import 'package:mood_tracker/pages/analytics.dart';
-import 'package:intl/intl.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:mood_tracker/pages/homePage.dart';
 import 'package:mood_tracker/pages/settings.dart';
 
@@ -17,9 +12,6 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => myAppState;
-  // getMoods() async{
-  //   return myAppState.getMoods();
-  // }
 
 }
 
@@ -31,7 +23,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     moodsFuture = getMoods();
   }
@@ -69,18 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: SafeArea(top:false,child: tabs[_currentIndex]),
- 
-      // floatingActionButton: FancyButton(
-      //   //onPressedMethod: _incrementCounter,
-      //   onPressedMethod: () => showDialog(
-      //     context: context,
-      //     builder: (context){
-      //         return MoodSelect(onPressedMethod:addMood);
-      //     },
-      //   ),
-      //   //tooltip: 'Increment',
-      //   //child: Icon(Icons.add),
-      // ), 
+
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
@@ -88,22 +68,18 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon:Icon(Icons.home),
             title:Text('Home'),
-            //backgroundColor: Colors.blue[500]
             ),
           BottomNavigationBarItem(
             icon:Icon(Icons.grid_on),
             title:Text('Analytics'),
-            //backgroundColor: Colors.blue[501]
           ),
           BottomNavigationBarItem(
             icon:Icon(Icons.book),
             title:Text('History'),
-           // backgroundColor: Colors.orange
           ),
           BottomNavigationBarItem(
             icon:Icon(Icons.settings),
             title:Text('Settings'),
-            //backgroundColor: Colors.purple
             ),
         ],
         onTap: (index){
@@ -111,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _currentIndex=index;
           });
         },
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

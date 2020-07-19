@@ -17,10 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: Themes.LIGHT,
       darkTheme: Themes.DARK,
-      // ThemeData(
-      //   primarySwatch: Colors.blue,
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      // ),
+      
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
     );

@@ -2,7 +2,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
 import 'package:mood_tracker/moodEntry.dart';
-import 'package:mood_tracker/pages/homeApp/home.dart';
 
 class DBProvider {
   DBProvider();
@@ -47,7 +46,6 @@ class DBProvider {
       ''', newMood.dbEntry()
     ); 
 
-    //currently rerun builder each time new mood added - in future optimize by just adding the newly added mood entry
     return res;
   }
 

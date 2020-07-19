@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/database.dart';
-import 'package:intl/intl.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
-import 'package:mood_tracker/historyCard.dart';
 
 class HomePage extends StatefulWidget{
   final Function refresh;
   HomePage({@required this.refresh});
   @override
   _HomePageState createState() => _HomePageState();
-
 }
 
 class _HomePageState extends State<HomePage> {
@@ -20,13 +16,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     moodsFuture = getMoods();
   }
 
   getMoods() async {
-    //print("peepo");
     final _moodsData = await DBProvider.db.getMood();
     return _moodsData;
   }
@@ -126,15 +120,10 @@ class _HomePageState extends State<HomePage> {
                     return moodList != null ? content : Container();
                   
                 }
+                return Container();
               }
             )
-            // Text('Home'),
-            // if(true)
-            //   RaisedButton(
-            //     child: Text("Add an Entry"),
-            //     onPressed: () => 
-            //     Navigator.pushNamed(context, '/ms2')
-            //   )
+           
           ],
         ),
       );

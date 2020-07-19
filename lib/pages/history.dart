@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/database.dart';
-import 'package:intl/intl.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:mood_tracker/historyCard.dart';
 
 class HistoryPage extends StatefulWidget{
@@ -20,13 +18,11 @@ class _HistoryPageState extends State<HistoryPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     moodsFuture = getMoods();
   }
 
   getMoods() async {
-    //print("peepo");
     final _moodsData = await DBProvider.db.getMood();
     return _moodsData;
   }
@@ -35,7 +31,7 @@ class _HistoryPageState extends State<HistoryPage> {
   Widget build(BuildContext context) {
     return Center( 
         child: FutureBuilder(
-          future:moodsFuture,  //Note, chaneg to moodsFuture later, after implementing refresh when new mood added
+          future:moodsFuture, 
           builder: (context, moodsData) {
 
             switch (moodsData.connectionState) {
@@ -48,23 +44,14 @@ class _HistoryPageState extends State<HistoryPage> {
                 {
                   moodList = moodsData.data;
                 }
-                
-               // print("got here");
-                //print(moodList[0].toString());
                 if(moodList.length!=0)//moodList != null
                 {
                   return ListView(
                   children: <Widget>[
-                    // Text(
-                    //   moodList.toString()
-                    // ),
                     SizedBox(height:20),
                     Column(
                       children: moodList.reversed.map((Map<String, dynamic> m) => new HistoryCard(moodMap: m,)).toList()
                     ),
-                    
-                    //HistoryCard(),
-                    //HistoryCard()
                   ],
                 ); 
                 }

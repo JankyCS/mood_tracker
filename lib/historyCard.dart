@@ -10,7 +10,7 @@ class HistoryCard extends StatelessWidget
   Widget reasonTile(BuildContext context,IconData icon){
     return Container(
       decoration: BoxDecoration(
-      color: true ? Colors.transparent: Colors.purple,
+      color: Colors.transparent,
       border: Border.all(width: 2.0, color: Theme.of(context).accentColor),
         borderRadius: BorderRadius.all(Radius.circular(5)),
       ),
@@ -26,7 +26,7 @@ class HistoryCard extends StatelessWidget
           Icon(
             icon,
             size:25,
-            color:false? Colors.black: Theme.of(context).accentColor,
+            color:Theme.of(context).accentColor,
           ),
          
         ]
@@ -96,12 +96,6 @@ class HistoryCard extends StatelessWidget
 
     return Container(
         margin: const EdgeInsets.fromLTRB(20,0,20,10),
-        // decoration: BoxDecoration(
-        //   border: Border(
-        //     //top: BorderSide(width: 16.0, color: Colors.lightBlue.shade50),
-        //     bottom: BorderSide(width: 1.0, color: Color(0xffEFEFEF)),
-        //   ),
-        // ),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -116,49 +110,37 @@ class HistoryCard extends StatelessWidget
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    //
                   Column(
                     children: <Widget>[
                       Image.asset(
                         img,
                         height: 50
                       ),
-                      // SizedBox(height:10),
-                      //Text("Super Great")
                     ],
                   ),
-                 
-
-                    //
                     SizedBox(
                       width:20,
                       
                     ),
-                    //Spacer(),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          //"JULY 10, 2020",
                           DateFormat('MMMM d, yyyy').format(DateTime.parse(moodMap['date'])).toUpperCase()+"",
                           style:
                             TextStyle(
                               fontWeight: FontWeight.w300,
-                              //color: Colors.black,
                               fontSize: 24,
                             ),
                             textAlign: TextAlign.start,
                         ),
                         Text(
-                          //"pog",
-                          ///"FELT GREAT!",
                           ""+phrase,
                           style:
                             TextStyle(
                               fontWeight: FontWeight.w600,
-                              //color: Colors.black,
                               fontSize: 24,
                             ),
                             textAlign: TextAlign.start,
@@ -174,19 +156,11 @@ class HistoryCard extends StatelessWidget
                     color: Theme.of(context).textTheme.headline1.color,
                   ),
                 ),
-                // Text(
-                //   "Here's Why:",
-                //   style: TextStyle(
-                //     fontWeight: FontWeight.w700,
-                //     color: Colors.black,
-                //     fontSize: 18,
-                //   ),
-                // ),
                 Wrap(
                   children: [
                     for(int i in list) 
                       if(reasonList[i]==1) reasonTiles[i]
-                  ]//reasonList != null ? reasonList.map((int i) => reasonTiles[i]).toList(): []
+                  ]
                 )
                 
               ],

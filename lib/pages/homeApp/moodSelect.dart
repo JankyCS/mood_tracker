@@ -18,7 +18,6 @@ class _MoodSelectState extends State<MoodSelect> {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: SimpleDialog(
-        //contentPadding: EdgeInsets.all(85.0),
         title:Text("How are you feeling?"),
         children: <Widget>[
           Column(
@@ -36,41 +35,9 @@ class _MoodSelectState extends State<MoodSelect> {
                 });
               },
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   children: [
-            //     reasonSelect(context, "FAMILY", Icons.home,0),
-            //     reasonSelect(context, "FRIENDS", Icons.people,1),
-            //     reasonSelect(context, "WORK", Icons.home,2),
-            //     reasonSelect(context, "HOBBIES", Icons.people,3),
-            //   ],
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   children: [
-            //     reasonSelect(context, "FAMILY", Icons.home,4),
-            //     reasonSelect(context, "FRIENDS", Icons.people,5),
-            //     reasonSelect(context, "WORK", Icons.home,6),
-            //     reasonSelect(context, "HOBBIES", Icons.people,7),
-            //   ],
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   children: [
-            //     reasonSelect(context, "FAMILY", Icons.home,8),
-            //     reasonSelect(context, "FRIENDS", Icons.people,9),
-            //     reasonSelect(context, "WORK", Icons.home,10),
-            //     reasonSelect(context, "HOBBIES", Icons.people,11),
-            //   ],
-            // ),
             Wrap(
               direction: Axis.horizontal,
               spacing:10,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 reasonSelect(context, "FAMILY", Icons.home,0),
                 reasonSelect(context, "FRIENDS", Icons.people,1),
@@ -91,25 +58,15 @@ class _MoodSelectState extends State<MoodSelect> {
                 print(whyList);
                 var m = MoodEntry(moodVal, whyList, DateTime.now());
                 DBProvider.db.newMood(m);
-                
-
-                //addMood(moodVal,whyList,1);
                 Navigator.pop(context);
                 },
             ),
             RaisedButton(
               onPressed: (){
-                //print(whyList);
-               //var m = MoodEntry(moodVal, whyList, DateTime.now());
                 DBProvider.db.deleteTable();
-                
-
-                //addMood(moodVal,whyList,1);
                 Navigator.pop(context);
                 },
             ),
-            
-            //Input a button here to submit, also do input fields for 
           ])
         ],
       ),
@@ -132,7 +89,6 @@ class _MoodSelectState extends State<MoodSelect> {
           width:75.0,
           height:75.0,
           margin: EdgeInsets.all(3.0),
-          //padding: const EdgeInsets.all(8.0),
           child:
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
