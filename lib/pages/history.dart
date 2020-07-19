@@ -76,7 +76,6 @@ class _HistoryPageState extends State<HistoryPage> {
                     Text(
                       "You haven't made any entries yet!",
                       style: TextStyle(
-                        color:Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold
                       ),
@@ -88,33 +87,14 @@ class _HistoryPageState extends State<HistoryPage> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    // Text(
-                    //   "Loading...",
-                    //   // style: TextStyle(
-                    //   //   color:Colors.black,
-                    //   //   fontSize: 20,
-                    //   //   fontWeight: FontWeight.bold
-                    //   // ),
-                    //   textAlign: TextAlign.center,
-                    // ),
-                
-
+                  
                   ],
                 );
             }
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // Text(
-                //   "Loading...",
-                //   // style: TextStyle(
-                //   //   color:Colors.black,
-                //   //   fontSize: 20,
-                //   //   fontWeight: FontWeight.bold
-                //   // ),
-                //   textAlign: TextAlign.center,
-                // ),
-                // CircularProgressIndicator(backgroundColor: Colors.purple)
+              
               ],
             );
           },

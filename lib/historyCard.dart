@@ -7,11 +7,11 @@ class HistoryCard extends StatelessWidget
   final Map<String, dynamic> moodMap;
   HistoryCard({@required this.moodMap});
 
-  Widget reasonTile(IconData icon){
+  Widget reasonTile(BuildContext context,IconData icon){
     return Container(
       decoration: BoxDecoration(
       color: true ? Colors.transparent: Colors.purple,
-      border: Border.all(width: 2.0, color: Colors.purple),
+      border: Border.all(width: 2.0, color: Theme.of(context).accentColor),
         borderRadius: BorderRadius.all(Radius.circular(5)),
       ),
       width:42.0,
@@ -26,7 +26,7 @@ class HistoryCard extends StatelessWidget
           Icon(
             icon,
             size:25,
-            color:false? Colors.black: Colors.purple,
+            color:false? Colors.black: Theme.of(context).accentColor,
           ),
          
         ]
@@ -57,18 +57,18 @@ class HistoryCard extends StatelessWidget
     var list = [for(var i=0; i<12; i+=1) i];
 
     List<Widget> reasonTiles = [
-      reasonTile(OMIcons.home),
-      reasonTile(OMIcons.peopleOutline),
-      reasonTile(Icons.business),
-      reasonTile(Icons.gesture),
-      reasonTile(OMIcons.school),
-      reasonTile(OMIcons.favoriteBorder),
-      reasonTile(Icons.healing),
-      reasonTile(OMIcons.headset),
-      reasonTile(OMIcons.kitchen),
-      reasonTile(OMIcons.announcement),
-      reasonTile(OMIcons.wbSunny),
-      reasonTile(OMIcons.localAtm),
+      reasonTile(context, OMIcons.home),
+      reasonTile(context, OMIcons.peopleOutline),
+      reasonTile(context, Icons.business),
+      reasonTile(context, Icons.gesture),
+      reasonTile(context, OMIcons.school),
+      reasonTile(context, OMIcons.favoriteBorder),
+      reasonTile(context, Icons.healing),
+      reasonTile(context, OMIcons.headset),
+      reasonTile(context, OMIcons.kitchen),
+      reasonTile(context, OMIcons.announcement),
+      reasonTile(context, OMIcons.wbSunny),
+      reasonTile(context, OMIcons.localAtm),
     ];
 
 
@@ -146,7 +146,7 @@ class HistoryCard extends StatelessWidget
                           style:
                             TextStyle(
                               fontWeight: FontWeight.w300,
-                              color: Colors.black,
+                              //color: Colors.black,
                               fontSize: 24,
                             ),
                             textAlign: TextAlign.start,
@@ -158,7 +158,7 @@ class HistoryCard extends StatelessWidget
                           style:
                             TextStyle(
                               fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                              //color: Colors.black,
                               fontSize: 24,
                             ),
                             textAlign: TextAlign.start,
@@ -171,7 +171,7 @@ class HistoryCard extends StatelessWidget
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10,0,10,0),
                   child: Divider(
-                    color: Colors.black,
+                    color: Theme.of(context).textTheme.headline1.color,
                   ),
                 ),
                 // Text(

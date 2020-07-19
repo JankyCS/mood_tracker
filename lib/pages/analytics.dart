@@ -590,11 +590,11 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     };
   }
 
-  Widget reasonTile(IconData icon){
+  Widget reasonTile(BuildContext context,IconData icon){
     return Container(
       decoration: BoxDecoration(
-      color: true ? Colors.transparent: Colors.purple,
-      border: Border.all(width: 2.0, color: Colors.purple),
+      color: true ? Color.fromRGBO(255, 255, 255, 0.0): Theme.of(context).accentColor,
+      border: Border.all(width: 2.0, color: Theme.of(context).accentColor),
         borderRadius: BorderRadius.all(Radius.circular(5)),
       ),
       width:375/12,
@@ -609,7 +609,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           Icon(
             icon,
             size:25,
-            color:false? Colors.black: Colors.purple,
+            color:false? Colors.black: Theme.of(context).accentColor,
           ),
          
         ]
@@ -695,7 +695,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
               var series1=[
                 charts.Series<MoodOverTime, DateTime>(
                   id: 'MoodOverTime',
-                  colorFn: (_, __) => charts.MaterialPalette.purple.shadeDefault,
+                  colorFn: (_, __) => charts.Color(r:Theme.of(context).accentColor.red,g:Theme.of(context).accentColor.green,b:Theme.of(context).accentColor.blue),
                   domainFn: (MoodOverTime mot, _) => mot.date,
                   measureFn: (MoodOverTime mot, _) => mot.moodVal,
                   data: dataTime
@@ -710,28 +710,29 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                   //Text(_currentIndex.toString()),
                   SizedBox(height:20),
                   CupertinoSegmentedControl(
-                    borderColor: Colors.purple[700],
-                    pressedColor: Colors.white,
-                    selectedColor: Colors.purple[100],
+                    borderColor: Theme.of(context).accentColor,
+                    pressedColor: Color.fromRGBO(246, 198, 255, 0.2),
+                    selectedColor: Color.fromRGBO(246, 198, 255, 0.4),
+                    unselectedColor: Colors.transparent,
                     //unselectedColor: ,
 
                     children: {
                       0: Text(
                         "Last 7 Days",
                         style: TextStyle(
-                          color: Colors.purple
+                          color: Theme.of(context).accentColor
                         )
                       ),
                       1: Text(
                         "Last 30 Days",
                         style: TextStyle(
-                          color: Colors.purple
+                          color: Theme.of(context).accentColor
                           )
                         ),
                       2: Text(
                         "All Time",
                         style: TextStyle(
-                          color: Colors.purple
+                          color: Theme.of(context).accentColor
                         )
                       )
                     },
@@ -779,18 +780,18 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                               height:375,
                               child: Column(
                                 children: [
-                                  reasonTile(OMIcons.home),
-                                  reasonTile(OMIcons.peopleOutline),
-                                  reasonTile(Icons.business),
-                                  reasonTile(Icons.gesture),
-                                  reasonTile(OMIcons.school),
-                                  reasonTile(OMIcons.favoriteBorder),
-                                  reasonTile(Icons.healing),
-                                  reasonTile(OMIcons.headset),
-                                  reasonTile(OMIcons.kitchen),
-                                  reasonTile(OMIcons.announcement),
-                                  reasonTile(OMIcons.wbSunny),
-                                  reasonTile(OMIcons.localAtm),
+                                  reasonTile(context,OMIcons.home),
+                                  reasonTile(context,OMIcons.peopleOutline),
+                                  reasonTile(context,Icons.business),
+                                  reasonTile(context,Icons.gesture),
+                                  reasonTile(context,OMIcons.school),
+                                  reasonTile(context,OMIcons.favoriteBorder),
+                                  reasonTile(context,Icons.healing),
+                                  reasonTile(context,OMIcons.headset),
+                                  reasonTile(context,OMIcons.kitchen),
+                                  reasonTile(context,OMIcons.announcement),
+                                  reasonTile(context,OMIcons.wbSunny),
+                                  reasonTile(context,OMIcons.localAtm),
                                 ],
                               ),
                             ),
@@ -809,6 +810,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                               Divider(
                                 color:Colors.black
                               ),
+                              SizedBox(height:15),
                               Align(
                                 alignment: Alignment.bottomLeft,
                                   child: Text(
@@ -820,6 +822,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                   )
                                 ),
                               ),
+                              SizedBox(height:5),
                               Card(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -838,8 +841,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                         fontSize: 18,
                                       ),
                                       children: <TextSpan>[
-                                        new TextSpan(text: '$words, the thing that made you happiest was: '),
-                                        new TextSpan(text: happiest, style: new TextStyle(fontWeight: FontWeight.bold)),
+                                        new TextSpan(text: '$words, the thing that made you happiest was: ',style:TextStyle(color:Theme.of(context).textTheme.headline1.color)),
+                                        new TextSpan(text: happiest, style: new TextStyle(fontWeight: FontWeight.bold,color:Theme.of(context).textTheme.headline1.color)),
                                       ],
                                     ),
                                   ),
@@ -863,8 +866,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                         fontSize: 18,
                                       ),
                                       children: <TextSpan>[
-                                        new TextSpan(text: '$words, the thing that made you unhappiest was: '),
-                                        new TextSpan(text: unhappiest, style: new TextStyle(fontWeight: FontWeight.bold)),
+                                        new TextSpan(text: '$words, the thing that made you unhappiest was: ', style:TextStyle(color:Theme.of(context).textTheme.headline1.color)),
+                                        new TextSpan(text: unhappiest, style: new TextStyle(fontWeight: FontWeight.bold,color:Theme.of(context).textTheme.headline1.color)),
                                       ],
                                     ),
                                   ),
@@ -888,8 +891,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                         fontSize: 18,
                                       ),
                                       children: <TextSpan>[
-                                        new TextSpan(text: '$words, the thing that most frequently affected your mood was: '),
-                                        new TextSpan(text: often, style: new TextStyle(fontWeight: FontWeight.bold)),
+                                        new TextSpan(text: '$words, the thing that most frequently affected your mood was: ',style:TextStyle(color:Theme.of(context).textTheme.headline1.color)),
+                                        new TextSpan(text: often, style: new TextStyle(fontWeight: FontWeight.bold,color:Theme.of(context).textTheme.headline1.color)),
                                       ],
                                     ),
                                   ),
@@ -929,9 +932,21 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                   primaryMeasureAxis:
                                   new charts.NumericAxisSpec(
                                     showAxisLine: true,
-                                    //renderSpec: new charts.NoneRenderSpec(),
+                                    renderSpec: new charts.GridlineRendererSpec(
+
+                                    // Tick and Label styling here.
+                                    labelStyle: new charts.TextStyleSpec(
+                                        //fontSize: 18, // size in Pts.
+                                        color: Theme.of(context).textTheme.headline1.color == Colors.white ? charts.MaterialPalette.white : charts.MaterialPalette.black),
+
+                                    // Change the line colors to match text color.
+                                    lineStyle: new charts.LineStyleSpec(
+                                        color: Theme.of(context).textTheme.headline1.color == Colors.white ? charts.MaterialPalette.white : charts.MaterialPalette.black
+                                      )
+                                    ),
                                     viewport: charts.NumericExtents(-5, 5),
                                     tickProviderSpec: new charts.StaticNumericTickProviderSpec(
+                                      
                                       // Create the ticks to be used the domain axis.
                                       <charts.TickSpec<num>>[
                                         new charts.TickSpec(-5, label: 'Totally\nTerrible\n\n'),
@@ -940,9 +955,21 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                         //new charts.TickSpec(3, label: ''),
                                         //new charts.TickSpec(4, label: ''),
                                       ],
-                                    )
+                                    ),
                                   ),
                                   domainAxis: charts.DateTimeAxisSpec(
+                                    renderSpec: new charts.SmallTickRendererSpec(
+
+                                    // Tick and Label styling here.
+                                    labelStyle: charts.TextStyleSpec(
+                                        //fontSize: 18, // size in Pts.
+                                        color: Theme.of(context).textTheme.headline1.color == Colors.white ? charts.MaterialPalette.white : charts.MaterialPalette.black),
+
+                                    // Change the line colors to match text color.
+                                    // lineStyle: new charts.LineStyleSpec(
+                                    //     color: Theme.of(context).textTheme.headline1.color == Colors.white ? charts.MaterialPalette.white : charts.MaterialPalette.black
+                                    //   )
+                                    ),
                                     tickFormatterSpec: new charts.AutoDateTimeTickFormatterSpec(
                                       day: new charts.TimeFormatterSpec(
                                         format: 'MMMM dd', transitionFormat: 'MMMM dd'),
@@ -977,7 +1004,6 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             return Text(
                 "You haven't made any entries yet!",
                 style: TextStyle(
-                  color:Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.bold
                 )

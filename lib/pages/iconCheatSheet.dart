@@ -48,10 +48,10 @@ class _IconSheetState extends State<IconSheet> {
               Icon(
                 icon,
                 size:(MediaQuery.of(context).size.width-60)/5-30,
-                color:true? Colors.black: Colors.white,),
+                color:true? Theme.of(context).cardTheme.color: Colors.white,),
               Text(
                 name,
-                style: TextStyle(color: true ? Colors.black: Colors.white,)
+                style: TextStyle(color: true ? Theme.of(context).cardTheme.color: Colors.white,)
               )
             ]
           )
@@ -166,7 +166,7 @@ class _IconSheetState extends State<IconSheet> {
                   'Icon Cheat Sheet',
                   style:TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: Theme.of(context).cardTheme.color,
                     fontSize: 24,
                   ),
                   textAlign: TextAlign.center,

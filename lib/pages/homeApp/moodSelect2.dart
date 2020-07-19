@@ -48,10 +48,10 @@ class _MoodSelect2State extends State<MoodSelect2> {
               Icon(
                 icon,
                 size:(MediaQuery.of(context).size.width-60)/5-30,
-                color:whyList[whyIndex]==0? Colors.black: Colors.white,),
+                color:whyList[whyIndex]==0? Theme.of(context).cardTheme.color: Colors.white,),
               Text(
                 name,
-                style: TextStyle(color: whyList[whyIndex]==0 ? Colors.black: Colors.white,)
+                style: TextStyle(color: whyList[whyIndex]==0 ? Theme.of(context).cardTheme.color: Colors.white,)
               )
             ]
           )
@@ -82,7 +82,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 
                 expandedHeight: 100,
                 automaticallyImplyLeading: false, // removes back chevron
-                //pinned: false,
+                pinned: true,
              
                 // bottom: 
                 // PreferredSize(
@@ -166,7 +166,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                   'How are you feeling?',
                   style:TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    //color: Colors.black,
                     fontSize: 24,
                   ),
                   textAlign: TextAlign.center,
@@ -231,7 +231,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                 //if(moodVal=)
 
               Slider(
-                activeColor: Colors.purple,
+                activeColor: Theme.of(context).accentColor,
                 min:-5.0,
                 max:5.0,
                 value:moodVal,
@@ -252,7 +252,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                   'Why do you feel this way?',
                   style:TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    //color: Colors.black,
                     fontSize: 24,
                   ),
                   textAlign: TextAlign.center,
