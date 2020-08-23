@@ -119,7 +119,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _monday() async {
-    var time = Time(5, 3, 0);
+    var time = Time(7, 0, 0);
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         'show weekly channel id',
         'show weekly channel name',
