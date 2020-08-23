@@ -2,16 +2,10 @@ import 'package:flutter/material.dart';
 import 'routeManager.dart';
 import 'themes.dart';
 import 'package:flutter/services.dart';
-
 import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 import 'package:rxdart/subjects.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -48,7 +42,7 @@ Future<void> main() async {
   notificationAppLaunchDetails =
       await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
 
-  var initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
+  var initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
   // Note: permissions aren't requested here just to demonstrate that can be done later using the `requestPermissions()` method
   // of the `IOSFlutterLocalNotificationsPlugin` class
   var initializationSettingsIOS = IOSInitializationSettings(
@@ -125,7 +119,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _monday() async {
-    var time = Time(7, 0, 0);
+    var time = Time(5, 3, 0);
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         'show weekly channel id',
         'show weekly channel name',
@@ -137,7 +131,7 @@ class _MyAppState extends State<MyApp> {
         0,
         '☀️ Rise and Shine!',
         'Ready to tackle this week?',
-        Day.Monday,
+        Day.Sunday,
         time,
         platformChannelSpecifics);
   }
