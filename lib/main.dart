@@ -86,8 +86,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _requestIOSPermissions();
-    // _configureDidReceiveLocalNotificationSubject();
-    // _configureSelectNotificationSubject();
   }
 
   void _requestIOSPermissions() {
@@ -101,47 +99,6 @@ class _MyAppState extends State<MyApp> {
         );
   }
 
-  // void _configureDidReceiveLocalNotificationSubject() {
-  //   didReceiveLocalNotificationSubject.stream
-  //       .listen((ReceivedNotification receivedNotification) async {
-  //     await showDialog(
-  //       context: context,
-  //       builder: (BuildContext context) => CupertinoAlertDialog(
-  //         title: receivedNotification.title != null
-  //             ? Text(receivedNotification.title)
-  //             : null,
-  //         content: receivedNotification.body != null
-  //             ? Text(receivedNotification.body)
-  //             : null,
-  //         actions: [
-  //           CupertinoDialogAction(
-  //             isDefaultAction: true,
-  //             child: Text('Ok'),
-  //             onPressed: () async {
-  //               Navigator.of(context, rootNavigator: true).pop();
-  //               await Navigator.push(
-  //                 context,
-  //                 MaterialPageRoute(
-  //                   builder: (context) =>
-  //                       SecondScreen(receivedNotification.payload),
-  //                 ),
-  //               );
-  //             },
-  //           )
-  //         ],
-  //       ),
-  //     );
-  //   });
-  // }
-
-  // void _configureSelectNotificationSubject() {
-  //   selectNotificationSubject.stream.listen((String payload) async {
-  //     await Navigator.push(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => SecondScreen(payload)),
-  //     );
-  //   });
-  // }
 
   @override
   void dispose() {
@@ -153,9 +110,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    //_cancelAllNotifications();
-    //_repeatNotification();
-    //_showDailyAtTime();
     _monday();
     _wednesday();
     _saturday();
