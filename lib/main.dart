@@ -109,7 +109,7 @@ class _MyAppState extends State<MyApp> {
     _saturday();
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Moodly',
       theme: Themes.LIGHT,
       darkTheme: Themes.DARK,
       
