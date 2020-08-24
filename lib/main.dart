@@ -131,7 +131,7 @@ class _MyAppState extends State<MyApp> {
         0,
         '☀️ Rise and Shine!',
         'Ready to tackle this week?',
-        Day.Sunday,
+        Day.Monday,
         time,
         platformChannelSpecifics);
   }
