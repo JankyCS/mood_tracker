@@ -1,6 +1,6 @@
 # mood_tracker
 
-A new Flutter project.
+Source code for Moodly - a flutter mood-tracker app, to see how you feel on a day to day basis, and what makes you happy, and what doesn't! [Download it on the Google Play Store!](https://play.google.com/store/apps/details?id=com.jankycs.mood_tracker&hl=en)
 
 ## Getting Started
 
