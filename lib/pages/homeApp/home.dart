@@ -8,16 +8,15 @@ import 'package:mood_tracker/pages/settings.dart';
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
-  _MyHomePageState myAppState=new _MyHomePageState();
+  _MyHomePageState myAppState = new _MyHomePageState();
 
   @override
   _MyHomePageState createState() => myAppState;
-
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex=0;
-   
+  int _currentIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   List<Map<String, dynamic>> moodList = [];
   Future moodsFuture;
 
@@ -35,56 +34,60 @@ class _MyHomePageState extends State<MyHomePage> {
 
   refresh() {
     setState(() {
-      _currentIndex=2;
+      _currentIndex = 2;
     });
   }
-  
+
   Widget build(BuildContext context) {
-    List<Widget> tabs =[
-      HomePage(refresh: refresh,),
+    List<Widget> tabs = [
+      HomePage(
+        refresh: refresh,
+      ),
       AnalyticsPage(),
       HistoryPage(),
-      SettingsPage()
-  ];
+      SettingsPage(
+        scaffoldKey: _scaffoldKey,
+      )
+    ];
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(00.0),
         child: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           //title: Text(widget.title),
-          
-          backgroundColor:  Colors.transparent,
+
+          backgroundColor: Colors.transparent,
           elevation: 0,
         ),
       ),
-      body: SafeArea(top:false,child: tabs[_currentIndex]),
-
+      body: SafeArea(top: false, child: tabs[_currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon:Icon(Icons.home),
-            title:Text('Home'),
-            ),
-          BottomNavigationBarItem(
-            icon:Icon(Icons.grid_on),
-            title:Text('Analytics'),
+            icon: Icon(Icons.home),
+            title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon:Icon(Icons.book),
-            title:Text('History'),
+            icon: Icon(Icons.grid_on),
+            title: Text('Analytics'),
           ),
           BottomNavigationBarItem(
-            icon:Icon(Icons.settings),
-            title:Text('Settings'),
-            ),
+            icon: Icon(Icons.book),
+            title: Text('History'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
+          ),
         ],
-        onTap: (index){
+        onTap: (index) {
           setState(() {
-            _currentIndex=index;
+            _currentIndex = index;
           });
         },
       ),
