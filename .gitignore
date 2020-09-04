@@ -1,6 +1,7 @@
 /key.jks
 /android/app/google-services.json
 /firebase_cloud_functions
+.flutter-plugins-dependencies
 # Miscellaneous
 *.class
 *.log
