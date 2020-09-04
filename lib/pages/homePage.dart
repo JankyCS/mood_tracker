@@ -64,13 +64,13 @@ class _HomePageState extends State<HomePage> {
                     };
 
                     //Add this back to enable one entry per day
-                    // if (lastEntryDate.day == now.day &&
-                    //     lastEntryDate.month == now.month &&
-                    //     lastEntryDate.year == now.year) {
-                    //   readyMsg = "Let's talk more tomorrow!";
-                    //   onPress = null;
-                    //   //return content;
-                    // }
+                    if (lastEntryDate.day == now.day &&
+                        lastEntryDate.month == now.month &&
+                        lastEntryDate.year == now.year) {
+                      readyMsg = "Let's talk more tomorrow!";
+                      onPress = null;
+                      //return content;
+                    }
 
                     Widget content = Column(
                       children: <Widget>[

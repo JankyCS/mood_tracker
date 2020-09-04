@@ -260,7 +260,7 @@ class _MoodSelect2State extends State<MoodSelect2> {
                     child: FlatButton(
                       color: Colors.purple[500],
                       onPressed: (){
-                        print(whyList);
+                        // print(whyList);
                         var m = MoodEntry(moodVal, whyList, DateTime.now().add(Duration(days:0)));
                         DBProvider.db.newMood(m);
                         

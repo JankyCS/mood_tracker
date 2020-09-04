@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mood_tracker/database.dart';
 import 'package:mood_tracker/moodEntry.dart';
 import 'package:mood_tracker/moodEntryList.dart';
-import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:clipboard/clipboard.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -82,35 +81,29 @@ class _SettingsPageState extends State<SettingsPage> {
           var table = await getMoods();
           if (table is List) {
             var tableString = json.encode(table);
-            try{
+            try {
               var res = await http.post(
-                "https://us-central1-moodly-249f3.cloudfunctions.net/encrypt",
-                body: {
-                  "rawString":tableString
-                }
-              );
+                  "https://us-central1-moodly-249f3.cloudfunctions.net/encrypt",
+                  body: {"rawString": tableString});
               var toCopy = json.decode(res.body)['encrypted'];
-              
-              ClipboardManager.copyToClipBoard(toCopy).then((result) {
+
+              FlutterClipboard.copy(toCopy).then((result) {
                 final snackBar = SnackBar(
                   content: Text('Export Token Copied to Clipboard'),
                 );
                 Scaffold.of(context).showSnackBar(snackBar);
               });
-            }
-            on SocketException catch(e){
+            } on SocketException catch (e) {
               final snackBar = SnackBar(
                 content: Text("Error: Must be connected to the internet"),
               );
               Scaffold.of(context).showSnackBar(snackBar);
-            }
-            on Exception catch(e){
+            } on Exception catch (e) {
               final snackBar = SnackBar(
                 content: Text(e.toString()),
               );
               Scaffold.of(context).showSnackBar(snackBar);
             }
-           
           } else {
             final snackBar = SnackBar(
               content: Text("No data yet!"),
@@ -163,13 +156,10 @@ class _SettingsPageState extends State<SettingsPage> {
                     onPressed: () async {
                       try {
                         var res = await http.post(
-                          "https://us-central1-moodly-249f3.cloudfunctions.net/decrypt",
-                          body: {
-                            "token":importController.text
-                          }
-                        );
+                            "https://us-central1-moodly-249f3.cloudfunctions.net/decrypt",
+                            body: {"token": importController.text});
                         var jsn = json.decode(res.body);
-                        if(jsn['error']!=null||jsn['decrypted']==null){
+                        if (jsn['error'] != null || jsn['decrypted'] == null) {
                           throw Exception('Invalid Token');
                         }
                         var decrypted = jsn['decrypted'];
@@ -178,9 +168,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         List<MoodEntry> userEntries = l.entries;
                         userEntries.sort((a, b) => a.date.compareTo(b.date));
                         DBProvider.db.deleteTable();
-                        userEntries.forEach((entry) => {
-                          DBProvider.db.newMood(entry)
-                        });
+                        userEntries
+                            .forEach((entry) => {DBProvider.db.newMood(entry)});
                         final snackBar = SnackBar(
                           content: Text('Data Imported'),
                         );
@@ -188,11 +177,12 @@ class _SettingsPageState extends State<SettingsPage> {
                         widget.scaffoldKey.currentState.showSnackBar(snackBar);
                       } on SocketException catch (_) {
                         final snackBar = SnackBar(
-                          content: Text("Error: Must be connected to the internet"),
+                          content:
+                              Text("Error: Must be connected to the internet"),
                         );
                         Navigator.pop(context);
                         widget.scaffoldKey.currentState.showSnackBar(snackBar);
-                      }on Exception catch (_) {
+                      } on Exception catch (_) {
                         final snackBar = SnackBar(
                           content: Text(_.toString()),
                         );
