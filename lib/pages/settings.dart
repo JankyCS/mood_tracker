@@ -5,7 +5,8 @@ import 'package:mood_tracker/moodEntryList.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:clipboard/clipboard.dart';
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
+import 'dart:io';
 import '../moodEntry.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -80,20 +81,41 @@ class _SettingsPageState extends State<SettingsPage> {
         settingCard(() async {
           var table = await getMoods();
           if (table is List) {
-            var toCopy = json.encode(table);
-            print(toCopy);
-            ClipboardManager.copyToClipBoard(toCopy).then((result) {
+            var tableString = json.encode(table);
+            try{
+              var res = await http.post(
+                "https://us-central1-moodly-249f3.cloudfunctions.net/encrypt",
+                body: {
+                  "rawString":tableString
+                }
+              );
+              var toCopy = json.decode(res.body)['encrypted'];
+              
+              ClipboardManager.copyToClipBoard(toCopy).then((result) {
+                final snackBar = SnackBar(
+                  content: Text('Export Token Copied to Clipboard'),
+                );
+                Scaffold.of(context).showSnackBar(snackBar);
+              });
+            }
+            on SocketException catch(e){
               final snackBar = SnackBar(
-                content: Text('Copied to Clipboard'),
-                action: SnackBarAction(
-                  label: 'Close',
-                  onPressed: () {},
-                ),
+                content: Text("Error: Must be connected to the internet"),
               );
               Scaffold.of(context).showSnackBar(snackBar);
-            });
+            }
+            on Exception catch(e){
+              final snackBar = SnackBar(
+                content: Text(e.toString()),
+              );
+              Scaffold.of(context).showSnackBar(snackBar);
+            }
+           
           } else {
-            print("No data yet!");
+            final snackBar = SnackBar(
+              content: Text("No data yet!"),
+            );
+            Scaffold.of(context).showSnackBar(snackBar);
           }
         }, "Export Data"),
         settingCard(() {
@@ -106,7 +128,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 content: SingleChildScrollView(
                   child: ListBody(
                     children: <Widget>[
-                      Text("Warning, old data will be overridden"),
+                      Text("WARNING, old data will be overridden"),
                       TextField(
                         controller: importController,
                         decoration: InputDecoration(
@@ -138,37 +160,41 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   FlatButton(
                     child: Text('Import Data'),
-                    onPressed: () {
+                    onPressed: () async {
                       try {
-                        final k = json.decode(importController.text);
+                        var res = await http.post(
+                          "https://us-central1-moodly-249f3.cloudfunctions.net/decrypt",
+                          body: {
+                            "token":importController.text
+                          }
+                        );
+                        var jsn = json.decode(res.body);
+                        if(jsn['error']!=null||jsn['decrypted']==null){
+                          throw Exception('Invalid Token');
+                        }
+                        var decrypted = jsn['decrypted'];
+                        final k = json.decode(decrypted);
                         MoodEntryList l = new MoodEntryList.fromJson(k);
                         List<MoodEntry> userEntries = l.entries;
                         userEntries.sort((a, b) => a.date.compareTo(b.date));
                         DBProvider.db.deleteTable();
                         userEntries.forEach((entry) => {
-                              print(entry.why),
-                              DBProvider.db.newMood(entry)
-                              // DBProvider.db.deleteTable()
-                            });
+                          DBProvider.db.newMood(entry)
+                        });
                         final snackBar = SnackBar(
                           content: Text('Data Imported'),
-                          action: SnackBarAction(
-                            label: 'Close',
-                            onPressed: () {},
-                          ),
                         );
                         Navigator.pop(context);
                         widget.scaffoldKey.currentState.showSnackBar(snackBar);
-                        //print(l.entries[0].date);
-                      } on Exception catch (_) {
-                        print(_);
-                        print("bruh");
+                      } on SocketException catch (_) {
                         final snackBar = SnackBar(
-                          content: Text('Error: Invalid Token'),
-                          action: SnackBarAction(
-                            label: 'Close',
-                            onPressed: () {},
-                          ),
+                          content: Text("Error: Must be connected to the internet"),
+                        );
+                        Navigator.pop(context);
+                        widget.scaffoldKey.currentState.showSnackBar(snackBar);
+                      }on Exception catch (_) {
+                        final snackBar = SnackBar(
+                          content: Text(_.toString()),
                         );
                         Navigator.pop(context);
                         widget.scaffoldKey.currentState.showSnackBar(snackBar);

@@ -1,5 +1,6 @@
 /key.jks
-
+/android/app/google-services.json
+/firebase_cloud_functions
 # Miscellaneous
 *.class
 *.log
