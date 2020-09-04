@@ -6,9 +6,9 @@ Source code for Moodly - a flutter mood-tracker app, to see how you feel on a da
 
 MOODLY is a mood-tracker app, driven by daily journals. Keep track of how you feel on a day to day basis, and figure out what makes you happy, and what doesn't!
 
-> LIGHTWEIGHT: A completely streamlined service, that is still robust in the ways that matter - no clutter!
-> PRIVATE: All data storage and analysis is done locally on the device. Don't worry about companies stealing your mood-data!
-> AD-FREE: No junk cluttering up your experience!
+- LIGHTWEIGHT: A completely streamlined service, that is still robust in the ways that matter - no clutter!
+- PRIVATE: All data storage and analysis is done locally on the device. Don't worry about companies stealing your mood-data!
+- AD-FREE: No junk cluttering up your experience!
 
 Get ready to reduce your stress, and gain a new perspective on your own emotions!
 
